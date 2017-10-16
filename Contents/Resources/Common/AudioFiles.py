@@ -6,6 +6,7 @@ import re, os, string
 import ID3, ID3v2
 from mutagen.flac import FLAC
 from mutagen.oggvorbis import OggVorbis
+from mutagen.oggopus import OggOpus
 from mutagen.easyid3 import EasyID3
 from mutagen.easymp4 import EasyMP4
 from mutagen.asf import ASF
@@ -266,6 +267,11 @@ def getInfoFromTag(filename, language):
   elif filename.lower().endswith("ogg"):
     try: 
       tag = OggVorbis(filename)
+    except: 
+      return (None, None, None, None, None, None, None)
+  elif filename.lower().endswith("opus"):
+    try: 
+      tag = OggOpus(filename)
     except: 
       return (None, None, None, None, None, None, None)
   elif filename.lower().endswith("wma"):
